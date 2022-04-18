@@ -16,15 +16,15 @@ def get_name(id):
     return plugins.toolkit.get_action('tag_show')({},{'id' : id, 'include_datasets': False})['display_name']
 
 def tags_stats():
-	total_tags = len(model.Tag.all().all())
+    total_tags = len(model.Tag.all().all())
 
-	total_taggings = len(meta.Session.query(model.PackageTag).all())
+    total_taggings = len(meta.Session.query(model.PackageTag).all())
 
-	return {'tags': total_tags, 'taggings': total_taggings}
+    return {'tags': total_tags, 'taggings': total_taggings}
     #tags_count = []
     #for t in range(0,len(tags)):
-	#print tags[t]
-	#tags_count[t] = plugins.toolkit.get_action('tag_show')({},{'id' : tags[t]['id']})
+    #print tags[t]
+    #tags_count[t] = plugins.toolkit.get_action('tag_show')({},{'id' : tags[t]['id']})
 
 def tag_count(id):
     return plugins.toolkit.get_action('tag_show')({},{'id' : id, 'include_datasets': True})
@@ -144,7 +144,7 @@ class TagmanagerPlugin(plugins.SingletonPlugin):
         map.connect('/tagmanager/merge_do', controller=tagmanager, action='merge_do')
         map.connect('/tagmanager/delete_confirm', controller=tagmanager, action='delete_confirm')
         map.connect('/tagmanager/delete', controller=tagmanager, action='delete')
-	return map
+        return map
 
     def after_map(self, map):
         return map
@@ -155,4 +155,4 @@ class TagmanagerPlugin(plugins.SingletonPlugin):
         toolkit.add_resource('fanstatic', 'tagmanager')
 
     def get_helpers(self):
-	return {'tagmanager_list_tags':list_tags,'tagmanager_tag_show':tag_show, 'tagmanager_tags_stats': tags_stats, 'tagmanager_tag_count':tag_count, 'tagmanager_has_suggestions':has_suggestions, 'tagmanager_get_suggestions': get_suggestions, 'tagmanager_get_name':get_name}
+	    return {'tagmanager_list_tags':list_tags,'tagmanager_tag_show':tag_show, 'tagmanager_tags_stats': tags_stats, 'tagmanager_tag_count':tag_count, 'tagmanager_has_suggestions':has_suggestions, 'tagmanager_get_suggestions': get_suggestions, 'tagmanager_get_name':get_name}
